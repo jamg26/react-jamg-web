@@ -1,0 +1,147 @@
+@import "node_modules/bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css?family=Quicksand");
+@import url("https://fonts.googleapis.com/css?family=Abel");
+@import url("https://fonts.googleapis.com/css?family=KoHo");
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+nav {
+  margin: 0 auto;
+}
+
+.nav-item,
+.nav {
+  display: inline-block;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+@media screen and (max-width: 768px) {
+  // #btn-nav {
+  //   padding: 5px 10px;
+  // }
+  .content-handler {
+    font-size: 1.7rem;
+  }
+}
+@media screen and (max-width: 540px) {
+  // #btn-nav {
+  //   padding: 5px 10px;
+  // }
+  .nav-tabs {
+    font-size: 10px;
+  }
+  .content-handler {
+    font-size: 1.3rem;
+  }
+}
+@media screen and (max-width: 374px) {
+  // #dashboard {
+  //   font-size: 16px;
+  // }
+  .nav-tabs {
+    font-size: 8px;
+  }
+  h1 {
+    font-size: 30px !important;
+  }
+  .row {
+    min-width: 320px;
+  }
+  .content-handler {
+    font-size: 1.1rem;
+  }
+}
+.dp {
+  height: 150px;
+  width: 150px;
+}
+.dp:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+.rm {
+  position: absolute;
+  cursor: pointer;
+}
+.sender {
+  height: 30px;
+  width: 30px;
+}
+.chat {
+  height: 400px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+//scrolling ios
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+}
+.home {
+  overflow: hidden;
+}
+//custom fonts
+.quick-sand {
+  font-family: "Quicksand", sans-serif;
+}
+.forgot-pw {
+  font-family: "Quicksand", sans-serif;
+  text-decoration: none !important;
+  font-size: 13px;
+}
+.abel {
+  font-family: "Abel", sans-serif !important;
+}
+.abel-header {
+  font-family: "Abel", sans-serif !important;
+  font-size: 30px !important;
+}
+.dash-note {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+  font-size: 15px;
+}
+.roboto {
+  font-family: "Roboto", sans-serif;
+}
+.profile-img {
+  width: 100px;
+  height: 100px;
+}
+//modal style
+.ReactModal__Overlay {
+  transition: opacity 500ms ease-in-out;
+  opacity: 0;
+
+  &--after-open {
+    opacity: 1;
+  }
+
+  &--before-close {
+    opacity: 0;
+  }
+}
+//overriden fonts
+h3 {
+  font-family: "Abel", sans-serif !important;
+}
+a {
+  font-family: "KoHo", sans-serif;
+  text-decoration: none !important;
+}
