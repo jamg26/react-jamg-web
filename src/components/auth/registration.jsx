@@ -105,10 +105,7 @@ class Register extends Component {
                     <mark>https://</mark> your password will be encrypted and
                     private.
                   </li>
-                  <li>
-                    Your information will be stored in the firebase it is our
-                    backend who owned by Google.
-                  </li>
+                  <li>Your information will be stored in the firebase.</li>
                   <li>
                     for more information{" "}
                     <a href="https://firebase.google.com/support/privacy/">
