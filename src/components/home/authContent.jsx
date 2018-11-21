@@ -31,23 +31,11 @@ export const NonAuthContent = props => {
   return (
     <div>
       <div className="mb-4">
-        <div>Verify this email to continue - {props.email}</div>
+        <ul className="list-unstyled">
+          <li>Verify this email to continue - {props.email}</li>
+          <li>Proceed to profile page to resend verification</li>
+        </ul>
       </div>
-      {!props.sendEmailButton ? (
-        <div hidden="true">
-          <button
-            className="btn btn-sm btn-info"
-            onClick={props.sendVerification}
-            disabled={props.btnDisabled}
-          >
-            Send Email Verification
-          </button>
-        </div>
-      ) : (
-        <button className="btn btn-sm btn-success" disabled={props.btnDisabled}>
-          Verification Sent!
-        </button>
-      )}
     </div>
   );
 };

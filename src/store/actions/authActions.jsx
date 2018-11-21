@@ -66,6 +66,7 @@ export const verifyEmail = () => {
       .currentUser.sendEmailVerification()
       .then(() => {
         dispatch({ type: "EMAIL_VERIFICATION_SENT" });
+        ToastStore.error("Email verification has been sent!");
       })
       .catch(function(error) {});
   };

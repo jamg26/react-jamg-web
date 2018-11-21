@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { removeDp, dp, newGender } from "../../store/actions/profileActions";
 import { profile } from "../../store/actions/navActions";
 import { newAge } from "../../store/actions/profileActions";
@@ -9,6 +10,7 @@ import { Dp } from "./dp";
 import { Gender } from "./gender";
 import { Loading } from "../../functions/loaders";
 import { Redirect } from "react-router-dom";
+import { verifyEmail } from "../../store/actions/authActions";
 class Profile extends Component {
   state = {
     age: "",
@@ -90,6 +92,10 @@ class Profile extends Component {
       this.props.gender(g);
     }
   };
+  //Re-send verification
+  resendVerification = () => {
+    this.props.resend();
+  };
   render() {
     if (!this.props.firebase.auth.uid) return <Redirect to="/" />;
     const { firebase } = this.props;
@@ -144,9 +150,13 @@ class Profile extends Component {
                           </li>
                           <li>
                             {firebase.auth.email} (
-                            {firebase.auth.emailVerified
-                              ? "verified"
-                              : "not verified"}
+                            {firebase.auth.emailVerified ? (
+                              "verified"
+                            ) : (
+                              <Link to="" onClick={this.resendVerification}>
+                                Resend
+                              </Link>
+                            )}
                             )
                           </li>
                           <li>
@@ -209,7 +219,8 @@ const mapDispatchToProps = dispatch => {
     dp: data => dispatch(dp(data)),
     profile: () => dispatch(profile()),
     age: data => dispatch(newAge(data)),
-    gender: data => dispatch(newGender(data))
+    gender: data => dispatch(newGender(data)),
+    resend: () => dispatch(verifyEmail())
   };
 };
 export default connect(

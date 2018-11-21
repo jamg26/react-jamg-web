@@ -21,17 +21,10 @@ import { NonAuthContent, AuthContent } from "./authContent";
 import { Loading } from "../../functions/loaders";
 import Webchat from "../webchat";
 class Home extends Component {
-  state = {
-    button: false
-  };
+  state = {};
   componentDidMount() {
     this.props.dashboard();
   }
-  test = () => {
-    this.setState({
-      test: "123"
-    });
-  };
 
   defaultContent() {
     const { profile } = this.props;
@@ -100,12 +93,6 @@ class Home extends Component {
       />
     );
   }
-  sendVerification = () => {
-    this.setState({
-      button: true
-    });
-    this.props.sendEmail();
-  };
   Content() {
     const { layout, auth, email } = this.props;
     if (!auth.emailVerified) {
