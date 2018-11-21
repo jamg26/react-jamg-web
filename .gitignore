@@ -1,6 +1,9 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Custom
 /src/App.css
 .firebase/hosting.YnVpbGQ.cache
+.netlify
+.vscode
 # dependencies
 /node_modules
 /functions/node_modules
