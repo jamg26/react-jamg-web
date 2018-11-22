@@ -21,12 +21,11 @@ export const AuthContent = props => {
         ? ((document.title = "Youtube to mp3 | JamgPH"), <Youtube />)
         : props.about
         ? ((document.title = "About | JamgPH"), <About />)
-        : props.default
-        ? ((document.title = "Home | JamgPH"), props.defaultContent)
-        : "error"}
+        : null}
     </div>
   );
 };
+
 export const NonAuthContent = props => {
   return (
     <div>

@@ -3,7 +3,6 @@ import { newMessage } from "../../store/actions/webchatActions";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
-import { ToastStore } from "react-toasts";
 import moment from "moment";
 import Linkify from "react-linkify";
 class WebChat extends Component {
@@ -27,17 +26,14 @@ class WebChat extends Component {
     this.setState({
       message: ""
     });
-    if (this.state.message === "") {
-      ToastStore.error("Cannot ba empty");
-    } else {
-      this.props.newMessage(this.state);
-    }
+    this.props.newMessage(this.state);
   };
   render() {
     const { webchat } = this.props;
     return (
       <div className="card">
-        <div className="card-body chat" ref="wrap">
+        <h5 className="card-titles text-dark m-3">Chatbox (BETA)</h5>
+        <div className="card-body chat border-top" ref="wrap">
           <ul className="list-unstyled">
             {webchat &&
               webchat.map(res => {
@@ -66,22 +62,25 @@ class WebChat extends Component {
               })}
           </ul>
         </div>
-        <form onSubmit={this.onSubmitMessage}>
-          <div className="input-group">
-            <input
-              type="text"
-              className="form-control"
-              onChange={this.onMessageChange.bind(this)}
-              placeholder="Type your message"
-              value={this.state.message}
-            />
-            <div className="input-group-append">
-              <button className="btn btn-outline-secondary" type="submit">
-                Send
-              </button>
+        <div className="card-footer">
+          <form onSubmit={this.onSubmitMessage}>
+            <div className="input-group">
+              <input
+                type="text"
+                className="form-control"
+                onChange={this.onMessageChange.bind(this)}
+                placeholder="Type your message. . ."
+                value={this.state.message}
+                required
+              />
+              <div className="input-group-append">
+                <button className="btn btn-primary" type="submit">
+                  <i className="fas fa-arrow-right" />
+                </button>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     );
   }

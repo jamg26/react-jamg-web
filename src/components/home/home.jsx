@@ -33,7 +33,6 @@ class Home extends Component {
     }
     return (
       <div>
-        <h3>Chatbox (BETA)</h3>
         <Webchat />
         {/* <DashNote firstName={profile.firstName} about={this.props.about} /> */}
       </div>
@@ -116,21 +115,23 @@ class Home extends Component {
       return (
         <div className="col-md-6">
           <br className="d-block d-md-none" />
-          <div className="card">
-            <div className="card-body">
-              <AuthContent
-                windows={layout.windows}
-                android={layout.android}
-                os={layout.os}
-                movies={layout.movies}
-                ip={layout.ip}
-                yt={layout.yt}
-                about={layout.about}
-                default={layout.default}
-                defaultContent={this.defaultContent()}
-              />
+          {layout.default ? (
+            ((document.title = "Home | JamgPH"), this.defaultContent())
+          ) : (
+            <div className="card">
+              <div className="card-body">
+                <AuthContent
+                  windows={layout.windows}
+                  android={layout.android}
+                  os={layout.os}
+                  movies={layout.movies}
+                  ip={layout.ip}
+                  yt={layout.yt}
+                  about={layout.about}
+                />
+              </div>
             </div>
-          </div>
+          )}
         </div>
       );
     }
