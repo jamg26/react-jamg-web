@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import moment from "moment";
-import { Link } from "react-router-dom";
 import { Messages, Pinned } from "./messages";
 class WebChat extends Component {
   state = {
