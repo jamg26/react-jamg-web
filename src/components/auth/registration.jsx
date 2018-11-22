@@ -4,6 +4,8 @@ import { register, authButton } from "../../store/actions/authActions";
 import { Redirect } from "react-router-dom";
 import { GroupTextHandler } from "../../functions/groupTextHandler";
 import { registerNav } from "../../store/actions/navActions";
+import Recaptcha from "react-recaptcha";
+import { ToastStore } from "react-toasts";
 class Register extends Component {
   componentDidMount() {
     document.title = "Register | JamgPH";
@@ -13,8 +15,19 @@ class Register extends Component {
     email: "",
     password: "",
     firstName: "",
-    lastName: ""
+    lastName: "",
+    captcha: false
   };
+
+  //recaptcha callbacks
+  recaptchaCallback = resp => {
+    if (resp) {
+      this.setState({
+        captcha: true
+      });
+    }
+  };
+
   handleChange = e => {
     this.setState({
       [e.target.id]: e.target.value
@@ -22,8 +35,12 @@ class Register extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
-    this.props.register(this.state);
-    this.props.registerButton();
+    if (this.state.captcha) {
+      this.props.registerButton();
+      this.props.register(this.state);
+    } else {
+      ToastStore.error("Invalid Captcha!");
+    }
   };
   render() {
     const { auth, regButton } = this.props;
@@ -81,7 +98,13 @@ class Register extends Component {
                       required
                     />
                   </div>
-                  <div className="form-group">
+
+                  <Recaptcha
+                    sitekey="6LdTdnwUAAAAAEv6HNCx2vSKCBBwQ3Ixz9sMPdAK"
+                    render="explicit"
+                    verifyCallback={this.recaptchaCallback}
+                  />
+                  <div className="form-group mt-2">
                     <button
                       className="btn btn-dark"
                       disabled={!regButton}

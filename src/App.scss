@@ -1,8 +1,10 @@
-@import "node_modules/bootstrap/scss/bootstrap";
 @import url("https://fonts.googleapis.com/css?family=Quicksand");
 @import url("https://fonts.googleapis.com/css?family=Abel");
 @import url("https://fonts.googleapis.com/css?family=KoHo");
 @import url("https://fonts.googleapis.com/css?family=Roboto");
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+//default tags
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -12,55 +14,13 @@ body {
   height: 1024px;
 }
 
+//navigation
 nav {
   margin: 0 auto;
 }
-
 .nav-item,
 .nav {
   display: inline-block;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
-@media screen and (max-width: 768px) {
-  // #btn-nav {
-  //   padding: 5px 10px;
-  // }
-  .content-handler {
-    font-size: 1.7rem;
-  }
-}
-@media screen and (max-width: 540px) {
-  // #btn-nav {
-  //   padding: 5px 10px;
-  // }
-  .nav-tabs {
-    font-size: 10px;
-  }
-  .content-handler {
-    font-size: 1.3rem;
-  }
-}
-@media screen and (max-width: 374px) {
-  // #dashboard {
-  //   font-size: 16px;
-  // }
-  .nav-tabs {
-    font-size: 8px;
-  }
-  h1 {
-    font-size: 30px !important;
-  }
-  .row {
-    min-width: 320px;
-  }
-  .content-handler {
-    font-size: 1.1rem;
-  }
 }
 
 //btn-circle
@@ -114,6 +74,10 @@ code {
 }
 
 //custom fonts
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
 .quick-sand {
   font-family: "Quicksand", sans-serif;
 }
@@ -141,6 +105,7 @@ code {
   width: 100px;
   height: 100px;
 }
+
 //modal style
 .ReactModal__Overlay {
   transition: opacity 500ms ease-in-out;
@@ -154,6 +119,7 @@ code {
     opacity: 0;
   }
 }
+
 //overriden fonts
 h3 {
   font-family: "Abel", sans-serif !important;
@@ -161,4 +127,33 @@ h3 {
 a {
   font-family: "KoHo", sans-serif;
   text-decoration: none !important;
+}
+
+//@media tags
+@media screen and (max-width: 768px) {
+  .content-handler {
+    font-size: 1.7rem;
+  }
+}
+@media screen and (max-width: 540px) {
+  .nav-tabs {
+    font-size: 10px;
+  }
+  .content-handler {
+    font-size: 1.3rem;
+  }
+}
+@media screen and (max-width: 374px) {
+  .nav-tabs {
+    font-size: 8px;
+  }
+  h1 {
+    font-size: 30px !important;
+  }
+  .row {
+    min-width: 320px;
+  }
+  .content-handler {
+    font-size: 1.1rem;
+  }
 }

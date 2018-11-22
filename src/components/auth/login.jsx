@@ -22,6 +22,7 @@ class Login extends Component {
     isModalOpen: false,
     button: false
   };
+
   openModal = () => {
     this.setState({
       isModalOpen: true,
@@ -108,7 +109,7 @@ class Login extends Component {
                       Forgot Password?
                     </Link>
                   </div>
-                  <div className="form-group">
+                  <div className="form-group mt-2">
                     <button
                       className="btn btn-dark"
                       disabled={!logButton}
