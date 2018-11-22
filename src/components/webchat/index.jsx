@@ -19,6 +19,7 @@ class WebChat extends Component {
       firstName: this.props.fb.profile.firstName
     });
   };
+
   componentDidUpdate() {
     var el = this.refs.wrap;
     if (this.state.limit < 50) {
@@ -27,15 +28,25 @@ class WebChat extends Component {
       el.scrollTop = el.scrollHeight;
     }
   }
+
+  scrollHandler = e => {
+    var el = this.refs.wrap;
+    if (el.scrollTop === 0) {
+      if (this.state.limit <= 0) {
+        return false;
+      } else {
+        setTimeout(e => {
+          this.setState({ limit: this.state.limit - 10 });
+        }, 1000);
+      }
+    }
+  };
+
   chatLoaded = () => {
     var el = this.refs.wrap;
     el.scrollTop = el.scrollHeight;
   };
-  showMore = () => {
-    var el = this.refs.wrap;
-    el.scrollTop = el.scrollHeight;
-    this.setState({ limit: this.state.limit - 20 });
-  };
+
   onSubmitMessage = e => {
     e.preventDefault();
     this.setState({
@@ -48,14 +59,14 @@ class WebChat extends Component {
     return (
       <div className="card">
         <h5 className="card-titles text-dark m-3">Chatbox (BETA)</h5>
-        <div className="card-body chat border-top" ref="wrap">
+        <div
+          className="card-body chat border-top"
+          ref="wrap"
+          onScroll={this.scrollHandler}
+        >
           <ul className="list-unstyled">
             {!webchat ? null : this.state.limit <= 0 ? null : (
-              <li className="text-center mb-3">
-                <Link to="" className="text-center" onClick={this.showMore}>
-                  show more...
-                </Link>
-              </li>
+              <li className="text-center mb-3">Loading . . .</li>
             )}
             {webchat &&
               webchat.map((res, index) => {
