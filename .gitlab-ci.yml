@@ -14,8 +14,5 @@ pages:
   script:
     - npm run build
     - firebase deploy --token "1/lDwQGJGXmSKvRIONgzDs2s9I2suC5Km2N7r6GN9b4NSNQL1v2pVtshoHlBUGnnRK" -P jamgph
-  artifacts:
-    paths:
-      - public # GitLab pages serve from a 'public' directory
   only:
     - master # run on master branch
