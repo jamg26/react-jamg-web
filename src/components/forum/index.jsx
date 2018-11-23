@@ -9,7 +9,7 @@ import { forumNav } from "../../store/actions/navActions";
 import { Redirect } from "react-router-dom";
 class Forum extends Component {
   componentDidMount() {
-    document.title = "Forum";
+    document.title = "Mini-Forum | jamgph";
     this.props.forumNav();
   }
   render() {

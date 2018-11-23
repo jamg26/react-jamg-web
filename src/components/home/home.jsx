@@ -116,7 +116,7 @@ class Home extends Component {
         <div className="col-md-6">
           <br className="d-block d-md-none" />
           {layout.default ? (
-            ((document.title = "Home | JamgPH"), this.defaultContent())
+            ((document.title = "Home | jamgph"), this.defaultContent())
           ) : (
             <div className="card">
               <div className="card-body">

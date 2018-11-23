@@ -20,7 +20,7 @@ class Profile extends Component {
     dpLoaded: false
   };
   componentDidMount() {
-    document.title = "Profile | JamgPH";
+    document.title = "Profile | jamgph";
     this.props.profile();
   }
   //dp

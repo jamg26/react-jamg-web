@@ -13,7 +13,7 @@ class ForumContent extends Component {
     const { topic, auth, pinnedTopic } = this.props;
     if (!auth.uid) return <Redirect to="/" />;
     if (topic) {
-      document.title = this.props.topic.title;
+      document.title = this.props.topic.title + " | jamgph";
       return (
         <NormalPost
           title={topic.title}
@@ -23,6 +23,7 @@ class ForumContent extends Component {
         />
       );
     } else if (pinnedTopic) {
+      document.title = this.props.pinnedTopic.title + " | jamgph";
       return (
         <PinnedPost
           title={pinnedTopic.title}
