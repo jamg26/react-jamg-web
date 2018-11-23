@@ -18,7 +18,6 @@ import { ContentHandler } from "../../functions/contentHandler";
 import { MobileHandler } from "./mobileHandler";
 import { dashboard } from "../../store/actions/navActions";
 import { NonAuthContent, AuthContent } from "./authContent";
-import { Loading } from "../../functions/loaders";
 import Webchat from "../webchat";
 class Home extends Component {
   state = {};
@@ -29,14 +28,15 @@ class Home extends Component {
   defaultContent() {
     const { profile } = this.props;
     if (!profile.firstName) {
-      return <Loading />;
+      return null;
+    } else {
+      return (
+        <div>
+          <Webchat />
+          {/* <DashNote firstName={profile.firstName} about={this.props.about} /> */}
+        </div>
+      );
     }
-    return (
-      <div>
-        <Webchat />
-        {/* <DashNote firstName={profile.firstName} about={this.props.about} /> */}
-      </div>
-    );
   }
   APIipLocator() {
     return (

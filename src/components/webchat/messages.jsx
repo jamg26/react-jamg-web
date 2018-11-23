@@ -31,7 +31,8 @@ export const Pinned = props => {
         <Linkify properties={{ target: "_blank" }}>{props.message}</Linkify>
       </span>
       <br />
-      <small>{props.date}</small>
+      <small>Will be deleted {props.date}</small>
+      <hr />
     </div>
   );
 };

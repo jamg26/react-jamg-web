@@ -10,7 +10,9 @@ class WebChat extends Component {
     message: "",
     firstName: null,
     avatar: this.props.fb.auth.photoURL,
-    limit: 50
+    limit: 50,
+    LoadingChatHidden: true,
+    time: null
   };
   onMessageChange = e => {
     this.setState({
@@ -35,8 +37,11 @@ class WebChat extends Component {
         return false;
       } else {
         setTimeout(e => {
-          this.setState({ limit: this.state.limit - 10 });
-        }, 1000);
+          this.setState({
+            limit: this.state.limit - 10,
+            LoadingChatHidden: false
+          });
+        }, 500);
       }
     }
   };
@@ -65,7 +70,12 @@ class WebChat extends Component {
         >
           <ul className="list-unstyled">
             {!webchat ? null : this.state.limit <= 0 ? null : (
-              <li className="text-center mb-3">Loading . . .</li>
+              <li
+                className="text-center mb-3"
+                hidden={this.state.LoadingChatHidden}
+              >
+                Loading . . .
+              </li>
             )}
             {webchat &&
               webchat.map((res, index) => {
