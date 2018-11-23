@@ -32,7 +32,7 @@ export const NonAuthContent = props => {
       <div className="mb-4">
         <ul className="list-unstyled">
           <li>Verify this email to continue - {props.email}</li>
-          <li>Proceed to profile page to resend verification</li>
+          <li>Proceed to profile page to resend verification.</li>
         </ul>
       </div>
     </div>
