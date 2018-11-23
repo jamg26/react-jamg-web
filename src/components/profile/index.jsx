@@ -197,6 +197,7 @@ class Profile extends Component {
                         No matter how often you change it
                       </li>
                     </ul>
+                    Regards, Admin
                   </div>
                 </div>
               </div>
