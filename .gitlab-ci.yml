@@ -11,8 +11,10 @@ pages:
   stage: deploy
   script:
     - npm run build
+    - rm -rf public
+    - mv build public
   artifacts:
     paths:
-      - build # GitLab pages serve from a 'public' directory
+      - public # GitLab pages serve from a 'public' directory
   only:
     - master # run on master branch
