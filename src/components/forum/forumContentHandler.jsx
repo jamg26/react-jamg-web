@@ -68,7 +68,7 @@ export const PinnedPost = props => {
                   </div>
                   <div className="col-md-6">
                     <div className="card">
-                      <div className="card-body">
+                      <div className="card-body forum-body">
                         <Linkify properties={{ target: "_blank" }}>
                           {ReactHtmlParser(props.message)}
                         </Linkify>

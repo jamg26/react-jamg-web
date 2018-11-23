@@ -5,7 +5,7 @@ cache:
   paths:
     - node_modules/
     - functions/node_modules/
-    - /usr/local/lib/node_modules/firebase-tools/node_modules/@google-cloud/functions-emulator
+    - /usr/local/lib/node_modules/firebase-tools/
 
 before_script:
   - cd functions
