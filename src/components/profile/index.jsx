@@ -194,7 +194,7 @@ class Profile extends Component {
                       </li>
                       <li>
                         Only your current profile will be save in our database,
-                        No matter how often you change it.
+                        no matter how often you change it.
                       </li>
                     </ul>
                   </div>
