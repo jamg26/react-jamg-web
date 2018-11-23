@@ -48,7 +48,7 @@ class Nav extends Component {
                     className={dashClass}
                     onClick={this.props.dashboard}
                   >
-                    DASHBOARD
+                    Dashboard
                   </Link>
                 </li>
                 <li className="nav-item">
@@ -57,7 +57,7 @@ class Nav extends Component {
                     className={profileClass}
                     onClick={this.props.profile}
                   >
-                    PROFILE
+                    Profile
                   </Link>
                 </li>
                 <li className="nav-item">
