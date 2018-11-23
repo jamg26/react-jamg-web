@@ -130,7 +130,7 @@ class Register extends Component {
                   </li>
                   <li>Your information will be stored in the firebase.</li>
                   <li>
-                    for more information{" "}
+                    for more information -
                     <a href="https://firebase.google.com/support/privacy/">
                       https://firebase.google.com/support/privacy/
                     </a>
