@@ -19,9 +19,11 @@ pages:
     - npm run build
     - rm build/static/*/*.map
     - firebase deploy --token "1/lDwQGJGXmSKvRIONgzDs2s9I2suC5Km2N7r6GN9b4NSNQL1v2pVtshoHlBUGnnRK" -P jamgph
+    - rm -rf public
+    - mv build public
   artifacts:
     paths:
-      - build
+      - public
 
   only:
     - master # run on master branch
