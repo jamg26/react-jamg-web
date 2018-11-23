@@ -16,7 +16,7 @@ pages:
   environment: production
   script:
     - npm run build
-    - build/static/*/*.map
+    - rm build/static/*/*.map
     - firebase deploy --token "1/lDwQGJGXmSKvRIONgzDs2s9I2suC5Km2N7r6GN9b4NSNQL1v2pVtshoHlBUGnnRK" -P jamgph
   dependencies: []
   only:
