@@ -11,8 +11,7 @@ class WebChat extends Component {
     firstName: null,
     avatar: this.props.fb.auth.photoURL,
     limit: 50,
-    LoadingChatHidden: true,
-    time: null
+    LoadingChatHidden: true
   };
   onMessageChange = e => {
     this.setState({
