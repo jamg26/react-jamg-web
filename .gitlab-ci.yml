@@ -3,6 +3,7 @@ image: node:10.12.0 # change to match your node version
 cache:
   paths:
     - node_modules/
+    - functions/node_modules/
 
 before_script:
   - cd functions
@@ -10,7 +11,8 @@ before_script:
   - cd ../
   - npm install
   - npm install -g firebase-tools
-
+job:
+  dependencies: []
 pages:
   stage: deploy
   environment: production
@@ -18,6 +20,9 @@ pages:
     - npm run build
     - rm build/static/*/*.map
     - firebase deploy --token "1/lDwQGJGXmSKvRIONgzDs2s9I2suC5Km2N7r6GN9b4NSNQL1v2pVtshoHlBUGnnRK" -P jamgph
-  dependencies: []
+  artifacts:
+    paths:
+      - build
+
   only:
     - master # run on master branch
