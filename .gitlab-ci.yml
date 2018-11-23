@@ -1,4 +1,4 @@
-image: node:latest # change to match your node version
+image: node:10.12.0 # change to match your node version
 
 cache:
   key: ${CI_COMMIT_REF_SLUG}
