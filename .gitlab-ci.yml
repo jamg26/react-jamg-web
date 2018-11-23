@@ -9,6 +9,7 @@ before_script:
   - npm install
   - cd ../
   - npm install
+  - npm install -g firebase-tools
 
 pages:
   stage: deploy
