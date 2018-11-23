@@ -13,7 +13,6 @@ class WebChat extends Component {
     limit: 80,
     LoadingChatHidden: true
   };
-
   onMessageChange = e => {
     this.setState({
       message: e.target.value,
@@ -23,7 +22,7 @@ class WebChat extends Component {
 
   componentDidUpdate() {
     var el = this.refs.wrap;
-    if (this.state.limit < 50) {
+    if (this.state.limit < 80) {
       el.scrollTop = el.scrollHeight / 10;
     } else {
       el.scrollTop = el.scrollHeight;
