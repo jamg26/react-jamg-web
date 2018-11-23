@@ -193,8 +193,8 @@ class Profile extends Component {
                         avoid corrupted image.
                       </li>
                       <li>
-                        Only your current profile will be save in our database.
-                        No matter how often you change it
+                        Only your current profile will be save in our database,
+                        No matter how often you change it.
                       </li>
                     </ul>
                   </div>
