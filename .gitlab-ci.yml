@@ -1,19 +1,17 @@
-image: node:10.12.0 # change to match your node version
+image: rambabusaravanan/firebase #node:10.12.0 # change to match your node version
 
 cache:
-  key: cache_npm
+  key: ${CI_COMMIT_REF_SLUG}
   paths:
-    - .cache_npm
-    # - node_modules/
-    # - functions/node_modules/
-    # - /usr/local/bin/firebase/
+    - node_modules/
+    - functions/node_modules/
 
 before_script:
   - cd functions
   - npm install
   - cd ../
   - npm install
-  - npm install -g firebase-tools
+#  - npm install -g firebase-tools
 
 pages:
   stage: deploy
