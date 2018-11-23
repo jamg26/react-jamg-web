@@ -5,6 +5,7 @@ cache:
   paths:
     - node_modules/
     - functions/node_modules/
+    - /usr/local/lib/node_modules/
 
 before_script:
   - cd functions
