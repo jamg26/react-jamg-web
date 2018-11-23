@@ -10,7 +10,7 @@ class WebChat extends Component {
     message: "",
     firstName: null,
     avatar: this.props.fb.auth.photoURL,
-    limit: 80,
+    limit: 100,
     LoadingChatHidden: true
   };
   onMessageChange = e => {
@@ -22,7 +22,7 @@ class WebChat extends Component {
 
   componentDidUpdate() {
     var el = this.refs.wrap;
-    if (this.state.limit < 80) {
+    if (this.state.limit < 100) {
       el.scrollTop = el.scrollHeight / 10;
     } else {
       el.scrollTop = el.scrollHeight;

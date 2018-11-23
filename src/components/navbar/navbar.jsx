@@ -3,7 +3,12 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../../store/actions/authActions";
 import logo from "./jamg.svg";
-import { profile, login, registerNav } from "../../store/actions/navActions";
+import {
+  profile,
+  login,
+  registerNav,
+  forumNav
+} from "../../store/actions/navActions";
 class Nav extends Component {
   state = {};
   logout = () => {
@@ -24,6 +29,10 @@ class Nav extends Component {
     const dashClass = nav.dashboard
       ? "nav-link text-info active"
       : "nav-link text-dark";
+    const forumClass = nav.forum
+      ? "nav-link text-info active"
+      : "nav-link text-dark";
+
     return (
       <div>
         <nav className="navbar navbar-light bg-light">
@@ -49,6 +58,15 @@ class Nav extends Component {
                     onClick={this.props.dashboard}
                   >
                     Dashboard
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    to="/forum"
+                    className={forumClass}
+                    onClick={this.props.forum}
+                  >
+                    Mini-Forum
                   </Link>
                 </li>
                 <li className="nav-item">
@@ -109,7 +127,8 @@ const mapDispatchToProps = dispatch => {
     logout: () => dispatch(logout()),
     profile: () => dispatch(profile()),
     login: () => dispatch(login()),
-    register: () => dispatch(registerNav())
+    register: () => dispatch(registerNav()),
+    forum: () => dispatch(forumNav())
   };
 };
 export default connect(

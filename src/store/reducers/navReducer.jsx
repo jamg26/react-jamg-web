@@ -2,7 +2,8 @@ const initState = {
   dashboard: true,
   profile: false,
   login: true,
-  register: false
+  register: false,
+  forum: false
 };
 
 const navReducer = (state = initState, action) => {
@@ -11,13 +12,15 @@ const navReducer = (state = initState, action) => {
       return {
         ...state,
         profile: false,
-        dashboard: true
+        dashboard: true,
+        forum: false
       };
     case "profile":
       return {
         ...state,
         dashboard: false,
-        profile: true
+        profile: true,
+        forum: false
       };
     case "login":
       return {
@@ -31,6 +34,14 @@ const navReducer = (state = initState, action) => {
         register: true,
         login: false
       };
+    case "forum":
+      return {
+        ...state,
+        dashboard: false,
+        profile: false,
+        forum: true
+      };
+
     default:
       return state;
   }

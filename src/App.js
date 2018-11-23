@@ -13,6 +13,9 @@ import Register from "./components/auth/registration";
 import authActions from "./components/auth/authActionsHandler";
 import Profile from "./components/profile";
 import Navbar from "./components/navbar/navbar";
+import Forum from "./components/forum";
+import SubmitNew from "./components/forum/submitNew";
+import forumContent from "./components/forum/forumContent";
 //-----------------------------------------------------------------------------------------------------
 class App extends Component {
   state = {};
@@ -41,6 +44,9 @@ class App extends Component {
                 {/* <Route path="/extendedMovies" component={moviesE} /> */}
                 <Route path="/auth" component={authActions} />
                 <Route path="/profile" component={Profile} />
+                <Route path="/forum" component={Forum} />
+                <Route path="/topic/:id" component={forumContent} />
+                <Route path="/newtopic/:forumid(1)" component={SubmitNew} />
                 <Route component={this.pageNotFound} />
               </Switch>
             </div>

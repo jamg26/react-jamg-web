@@ -17,6 +17,7 @@
     "react": "^16.6.0",
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.6.3",
+    "react-html-parser": "^2.0.2",
     "react-linkify": "^0.2.2",
     "react-loader-spinner": "^2.2.0",
     "react-modal": "^3.6.1",

@@ -58,7 +58,11 @@ nav {
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 }
-
+//forum
+.forum-avatar {
+  height: 100px;
+  width: 100px;
+}
 //scrolling ios
 ::-webkit-scrollbar {
   -webkit-appearance: none;

@@ -18,3 +18,8 @@ export const registerNav = () => {
     dispatch({ type: "register" });
   };
 };
+export const forumNav = () => {
+  return (dispatch, getState) => {
+    dispatch({ type: "forum" });
+  };
+};
