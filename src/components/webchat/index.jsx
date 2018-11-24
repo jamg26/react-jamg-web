@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { newMessage } from "../../store/actions/webchatActions";
+import { newMessage, getMessageSize } from "../../store/actions/webchatActions";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
@@ -10,9 +10,11 @@ class WebChat extends Component {
     message: "",
     firstName: null,
     avatar: this.props.fb.auth.photoURL,
-    limit: 150,
-    LoadingChatHidden: true
+    loadLimit: null,
+    LoadingChatHidden: true,
+    chatbox: false
   };
+
   onMessageChange = e => {
     this.setState({
       message: e.target.value,
@@ -21,33 +23,40 @@ class WebChat extends Component {
   };
 
   componentDidUpdate() {
-    var el = this.refs.wrap;
-    if (this.state.limit < 150) {
-      el.scrollTop = el.scrollHeight / 10;
-    } else {
-      el.scrollTop = el.scrollHeight;
+    if (this.state.loadLimit === null) {
+      setTimeout(e => {
+        this.setState({
+          loadLimit: this.props.countWebchat.chatSize
+        });
+      }, 500);
     }
+    var el = this.refs.wrap;
+    if (this.state.loadLimit === this.props.countWebchat.chatSize) {
+      el.scrollTop = el.scrollHeight;
+    } else if (this.state.loadLimit <= 0) {
+      el.scrollTop = 0;
+    } else if (this.state.loadLimit < this.props.countWebchat.chatSize) {
+      el.scrollTop = el.scrollHeight / 10;
+    }
+  }
+  openChatbox = () => {
+    this.setState({
+      chatbox: true
+    });
+  };
+  componentDidMount() {
+    this.props.getMessageSize();
   }
 
   scrollHandler = e => {
     var el = this.refs.wrap;
     if (el.scrollTop === 0) {
-      if (this.state.limit <= 0) {
-        return false;
-      } else {
-        setTimeout(e => {
-          this.setState({
-            limit: this.state.limit - 10,
-            LoadingChatHidden: false
-          });
-        }, 500);
-      }
+      setTimeout(e => {
+        this.setState({
+          loadLimit: this.state.loadLimit - 10
+        });
+      }, 1000);
     }
-  };
-
-  chatLoaded = () => {
-    var el = this.refs.wrap;
-    el.scrollTop = el.scrollHeight;
   };
 
   onSubmitMessage = e => {
@@ -59,6 +68,26 @@ class WebChat extends Component {
   };
   render() {
     const { webchat, pinned } = this.props;
+    if (!this.state.chatbox) {
+      return (
+        <div className="card">
+          <h5 className="card-titles text-dark m-3">Chatbox</h5>
+          <div
+            className="card-body chat border-top"
+            ref="wrap"
+            onScroll={this.scrollHandler}
+          >
+            <button
+              type="button"
+              onClick={this.openChatbox}
+              className="btn btn-primary"
+            >
+              Open Chatbox
+            </button>
+          </div>
+        </div>
+      );
+    }
     return (
       <div className="card">
         <h5 className="card-titles text-dark m-3">Chatbox (BETA)</h5>
@@ -68,17 +97,12 @@ class WebChat extends Component {
           onScroll={this.scrollHandler}
         >
           <ul className="list-unstyled">
-            {!webchat ? null : this.state.limit <= 0 ? null : (
-              <li
-                className="text-center mb-3"
-                hidden={this.state.LoadingChatHidden}
-              >
-                Loading . . .
-              </li>
+            {!webchat ? null : this.state.loadLimit <= 0 ? null : (
+              <li className="text-center mb-3">Loading . . .</li>
             )}
             {webchat &&
               webchat.map((res, index) => {
-                if (index >= this.state.limit) {
+                if (index >= this.state.loadLimit - 10) {
                   return (
                     <li key={res.id}>
                       <Messages
@@ -137,12 +161,14 @@ const mapStateToProps = state => {
     webchat: state.firestore.ordered.webchat,
     fb: state.firebase,
     newMsg: state.webchat.newMsg,
-    pinned: state.firestore.ordered.pinned
+    pinned: state.firestore.ordered.pinned,
+    countWebchat: state.webchat
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
-    newMessage: query => dispatch(newMessage(query))
+    newMessage: query => dispatch(newMessage(query)),
+    getMessageSize: () => dispatch(getMessageSize())
   };
 };
 export default compose(

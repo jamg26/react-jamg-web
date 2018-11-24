@@ -1,3 +1,4 @@
+import { ToastStore } from "react-toasts";
 export const newMessage = query => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore();
@@ -12,14 +13,23 @@ export const newMessage = query => {
       .then(() => {
         dispatch({ type: "NEW_MESSAGE" });
       })
-      .catch(err => {
-        console.log(err.message);
+      .catch(e => {
+        ToastStore.error(e.message);
       });
   };
 };
 
-export const offMsg = () => {
-  return (dispatch, getState) => {
-    dispatch({ type: "OFF_STATE" });
+export const getMessageSize = () => {
+  return (dispatch, getState, { getFirestore }) => {
+    const firestore = getFirestore();
+    firestore
+      .collection("webchat")
+      .get()
+      .then(r => {
+        dispatch({ type: "COUNT_WEBCHAT", payload: r.size });
+      })
+      .catch(e => {
+        console.log(e.message);
+      });
   };
 };

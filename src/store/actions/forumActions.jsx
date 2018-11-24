@@ -5,17 +5,17 @@ export const newTopic = data => {
     firestore
       .collection("Forum")
       .add({
-        title: data.title,
         message: data.message.replace(/\n/gi, "<br />"),
+        title: data.title,
         author: data.author,
         avatar: data.photoURL,
         date: new Date()
       })
       .then(() => {
-        ToastStore.success("New Topic Submitted!");
+        dispatch({ type: "NEW_TOPIC_ADDED" });
       })
       .catch(e => {
-        console.log(e.message);
+        dispatch({ type: "NEW_TOPIC_ERROR", payload: e.message });
       });
   };
 };
@@ -37,7 +37,7 @@ export const reply = data => {
         ToastStore.success("Reply added!");
       })
       .catch(e => {
-        console.log(e.message);
+        ToastStore.error(e.message);
       });
   };
 };

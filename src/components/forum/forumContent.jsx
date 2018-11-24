@@ -145,7 +145,6 @@ class ForumContent extends Component {
                       replyList.map(r => {
                         return r.id === this.state.forumid ? (
                           r.replies.map(res => {
-                            console.log(res.avatar);
                             return (
                               <div key={res.id}>
                                 <Replies

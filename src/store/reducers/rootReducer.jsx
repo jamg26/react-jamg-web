@@ -5,7 +5,7 @@ import { firebaseReducer } from "react-redux-firebase";
 import layoutReducer from "./layoutReducer";
 import navReducer from "./navReducer";
 import profileReducer from "./profileReducer";
-import webchatActionReducer from "./webchatActionReducer";
+import webchatReducer from "./webchatReducer";
 import forumReducer from "./forumReducer";
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
   layout: layoutReducer,
   nav: navReducer,
   profile: profileReducer,
-  webchat: webchatActionReducer,
+  webchat: webchatReducer,
   forum: forumReducer
 });
 

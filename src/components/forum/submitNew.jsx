@@ -7,8 +7,8 @@ class SubmitNew extends Component {
     document.title = "Creating New Topic";
   }
   state = {
-    title: null,
-    message: null,
+    title: "",
+    message: "",
     author: null,
     disabled: true,
     done: false,
@@ -44,7 +44,7 @@ class SubmitNew extends Component {
                 <div className="form-group">
                   {this.state.done ? (
                     <div>
-                      <p>Topic Added Success</p>
+                      <p>{this.props.forum.newtopic}</p>
                       <Link to="/forum">Back to Forum</Link>
                     </div>
                   ) : (
@@ -55,7 +55,7 @@ class SubmitNew extends Component {
                         onChange={this.onChange}
                         type="text"
                         className="form-control col-md-5 mb-4"
-                        required
+                        //required
                       />
                       <p>Body</p>
                       <textarea
@@ -63,10 +63,10 @@ class SubmitNew extends Component {
                         onChange={this.onChange}
                         className="form-control col-md-5 mb-4"
                         rows="6"
-                        required
+                        //required
                       />
                       <button
-                        disabled={this.state.disabled}
+                        //  disabled={this.state.disabled}
                         type="submit"
                         className="btn btn-primary btn-small"
                       >
@@ -86,7 +86,8 @@ class SubmitNew extends Component {
 const mapStateToProps = state => {
   return {
     profile: state.firebase.profile,
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    forum: state.forum
   };
 };
 const mapDispatchToProps = dispatch => {
