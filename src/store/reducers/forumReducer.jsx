@@ -4,11 +4,6 @@ const initState = {
 
 const forumReducer = (state = initState, action) => {
   switch (action.type) {
-    case "GET_REPLIES":
-      console.log(action.payload);
-      return {
-        replies: action.payload
-      };
     default:
       return state;
   }

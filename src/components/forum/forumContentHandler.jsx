@@ -6,12 +6,14 @@ export const NormalPost = props => {
   return (
     <div className="row">
       <div className="col-md-2 text-center">
-        <img
-          className="forum-avatar rounded-circle"
-          src={props.avatar}
-          alt={props.author}
-          title={props.author}
-        />
+        {!props.avatar ? null : (
+          <img
+            className="forum-avatar rounded-circle"
+            src={props.avatar}
+            alt={props.author}
+            title={props.author}
+          />
+        )}
         <br />
         <h3>{props.author}</h3>
       </div>
@@ -31,12 +33,14 @@ export const PinnedPost = props => {
   return (
     <div className="row">
       <div className="col-md-2 text-center">
-        <img
-          className="forum-avatar rounded-circle"
-          src={props.avatar}
-          alt={props.author}
-          title={props.author}
-        />
+        {!props.avatar ? null : (
+          <img
+            className="forum-avatar rounded-circle"
+            src={props.avatar}
+            alt={props.author}
+            title={props.author}
+          />
+        )}
         <br />
         <h3>{props.author}</h3>
       </div>
@@ -58,43 +62,17 @@ export const Replies = props => {
     <div>
       <div className="row">
         <div className="col-md-2 text-center">
-          <img
-            className="forum-avatar rounded-circle"
-            src={props.avatar}
-            alt={props.author}
-            title={props.author}
-          />
+          {!props.avatar ? (
+            props.author
+          ) : (
+            <img
+              className="forum-avatar-reply rounded-circle"
+              src={props.avatar}
+              alt={props.author}
+              title={props.author}
+            />
+          )}
           <br />
-          <h3>{props.author}</h3>
-        </div>
-        <div className="col-md-6">
-          <div className="card">
-            <div className="card-body forum-body">
-              <Linkify properties={{ target: "_blank" }}>
-                {ReactHtmlParser(props.message)}
-              </Linkify>
-            </div>
-          </div>
-        </div>
-      </div>
-      <hr />
-    </div>
-  );
-};
-
-export const PinnedReplies = props => {
-  return (
-    <div>
-      <div className="row">
-        <div className="col-md-2 text-center">
-          <img
-            className="forum-avatar rounded-circle"
-            src={props.avatar}
-            alt={props.author}
-            title={props.author}
-          />
-          <br />
-          <h3>{props.author}</h3>
         </div>
         <div className="col-md-6">
           <div className="card">

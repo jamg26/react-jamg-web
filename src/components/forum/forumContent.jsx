@@ -4,12 +4,7 @@ import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { Redirect } from "react-router-dom";
 import { forumNav } from "../../store/actions/navActions";
-import {
-  NormalPost,
-  PinnedPost,
-  Replies,
-  PinnedReplies
-} from "./forumContentHandler";
+import { NormalPost, PinnedPost, Replies } from "./forumContentHandler";
 import { reply } from "../../store/actions/forumActions";
 class ForumContent extends Component {
   state = {
@@ -71,42 +66,36 @@ class ForumContent extends Component {
                   </div>
                 </div>
               </div>
-              {replyList &&
-                replyList.map(r => {
-                  return r.id === this.state.forumid ? (
-                    r.replies.map(res => {
-                      return (
-                        <div className="card mb-4" key={res.id}>
-                          <div className="card-body">
-                            <div className="container">
-                              <div>
+              <div className="card mb-4">
+                <div className="card-body">
+                  <div className="container">
+                    {replyList &&
+                      replyList.map(r => {
+                        return r.id === this.state.forumid ? (
+                          r.replies.map(res => {
+                            return (
+                              <div key={res.id}>
                                 <Replies
                                   avatar={res.avatar}
                                   author={res.name}
                                   message={res.reply}
                                 />
                               </div>
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })
-                  ) : (
-                    <div className="card mb-4" key={r.id}>
-                      <div className="card-body">
-                        <div className="container">
-                          <div>
+                            );
+                          })
+                        ) : (
+                          <div key={r.id}>
                             <Replies
                               avatar={r.avatar}
                               author={r.name}
                               message={r.reply}
                             />
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
+                        );
+                      })}
+                  </div>
+                </div>
+              </div>
               Submit Reply
               <form onSubmit={this.replyOnSubmit}>
                 <textarea
@@ -149,42 +138,37 @@ class ForumContent extends Component {
                   </div>
                 </div>
               </div>
-              {replyList &&
-                replyList.map(r => {
-                  return r.id === this.state.forumid ? (
-                    r.replies.map(res => {
-                      return (
-                        <div className="card mb-4" key={res.id}>
-                          <div className="card-body">
-                            <div className="container">
-                              <div>
-                                <PinnedReplies
+              <div className="card mb-4">
+                <div className="card-body">
+                  <div className="container">
+                    {replyList &&
+                      replyList.map(r => {
+                        return r.id === this.state.forumid ? (
+                          r.replies.map(res => {
+                            console.log(res.avatar);
+                            return (
+                              <div key={res.id}>
+                                <Replies
                                   avatar={res.avatar}
                                   author={res.name}
                                   message={res.reply}
                                 />
                               </div>
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })
-                  ) : (
-                    <div className="card mb-4" key={r.id}>
-                      <div className="card-body">
-                        <div className="container">
-                          <div>
+                            );
+                          })
+                        ) : (
+                          <div key={r.id}>
                             <Replies
                               avatar={r.avatar}
                               author={r.name}
                               message={r.reply}
                             />
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
+                        );
+                      })}
+                  </div>
+                </div>
+              </div>
               Submit Reply
               <form onSubmit={this.replyOnSubmit}>
                 <textarea
