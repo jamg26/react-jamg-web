@@ -55,7 +55,7 @@ class SubmitNew extends Component {
                         onChange={this.onChange}
                         type="text"
                         className="form-control col-md-5 mb-4"
-                        //required
+                        required
                       />
                       <p>Body</p>
                       <textarea
@@ -63,10 +63,10 @@ class SubmitNew extends Component {
                         onChange={this.onChange}
                         className="form-control col-md-5 mb-4"
                         rows="6"
-                        //required
+                        required
                       />
                       <button
-                        //  disabled={this.state.disabled}
+                        disabled={this.state.disabled}
                         type="submit"
                         className="btn btn-primary btn-small"
                       >
