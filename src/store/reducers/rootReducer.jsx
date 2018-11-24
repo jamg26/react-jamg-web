@@ -6,6 +6,7 @@ import layoutReducer from "./layoutReducer";
 import navReducer from "./navReducer";
 import profileReducer from "./profileReducer";
 import webchatActionReducer from "./webchatActionReducer";
+import forumReducer from "./forumReducer";
 const rootReducer = combineReducers({
   auth: authReducer,
   firestore: firestoreReducer,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   layout: layoutReducer,
   nav: navReducer,
   profile: profileReducer,
-  webchat: webchatActionReducer
+  webchat: webchatActionReducer,
+  forum: forumReducer
 });
 
 export default rootReducer;

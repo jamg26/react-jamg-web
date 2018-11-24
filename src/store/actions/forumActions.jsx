@@ -19,3 +19,25 @@ export const newTopic = data => {
       });
   };
 };
+
+export const reply = data => {
+  return (dispatch, getState, { getFirestore }) => {
+    const firestore = getFirestore();
+    firestore
+      .collection("replies")
+      .doc(data.forumid)
+      .collection("replies")
+      .add({
+        reply: data.reply.replace(/\n/gi, "<br />"),
+        avatar: data.photoURL,
+        name: data.name,
+        date: new Date()
+      })
+      .then(() => {
+        ToastStore.success("Reply added!");
+      })
+      .catch(e => {
+        console.log(e.message);
+      });
+  };
+};

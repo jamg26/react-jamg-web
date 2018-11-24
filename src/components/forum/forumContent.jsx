@@ -4,33 +4,206 @@ import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { Redirect } from "react-router-dom";
 import { forumNav } from "../../store/actions/navActions";
-import { NormalPost, PinnedPost } from "./forumContentHandler";
+import {
+  NormalPost,
+  PinnedPost,
+  Replies,
+  PinnedReplies
+} from "./forumContentHandler";
+import { reply } from "../../store/actions/forumActions";
 class ForumContent extends Component {
+  state = {
+    reply: "",
+    photoURL: null,
+    name: null,
+    disabled: true,
+    forumid: null,
+    hiddenReply: true
+  };
+  componentWillMount() {
+    this.setState({
+      forumid: this.props.forumid
+    });
+  }
+
   componentDidMount() {
     this.props.forumNav();
   }
+  replyOnChange = e => {
+    this.setState({
+      reply: e.target.value,
+      photoURL: this.props.auth.photoURL,
+      name: this.props.profile.firstName,
+      forumid: this.props.forumid,
+      disabled: false
+    });
+  };
+  replyOnSubmit = e => {
+    e.preventDefault();
+    this.setState({
+      disabled: true,
+      reply: ""
+    });
+    this.props.reply(this.state);
+  };
   render() {
-    const { topic, auth, pinnedTopic } = this.props;
+    const { topic, auth, pinnedTopic, replyList } = this.props;
     if (!auth.uid) return <Redirect to="/" />;
     if (topic) {
       document.title = this.props.topic.title + " | jamgph";
       return (
-        <NormalPost
-          title={topic.title}
-          avatar={topic.avatar}
-          author={topic.author}
-          message={topic.message}
-        />
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="card mb-4">
+                <h5 className="card-titles text-dark m-3">
+                  {topic.title}
+                  <hr />
+                </h5>
+                <div className="card-body">
+                  <div className="container">
+                    <NormalPost
+                      title={topic.title}
+                      avatar={topic.avatar}
+                      author={topic.author}
+                      message={topic.message}
+                    />
+                  </div>
+                </div>
+              </div>
+              {replyList &&
+                replyList.map(r => {
+                  return r.id === this.state.forumid ? (
+                    r.replies.map(res => {
+                      return (
+                        <div className="card mb-4" key={res.id}>
+                          <div className="card-body">
+                            <div className="container">
+                              <div>
+                                <Replies
+                                  avatar={res.avatar}
+                                  author={res.name}
+                                  message={res.reply}
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <div className="card mb-4" key={r.id}>
+                      <div className="card-body">
+                        <div className="container">
+                          <div>
+                            <Replies
+                              avatar={r.avatar}
+                              author={r.name}
+                              message={r.reply}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              Submit Reply
+              <form onSubmit={this.replyOnSubmit}>
+                <textarea
+                  value={this.state.reply}
+                  onChange={this.replyOnChange}
+                  className="form-control col-md-6 mb-3"
+                  rows="5"
+                />
+                <button
+                  disabled={this.state.disabled}
+                  type="submit"
+                  className="btn btn-primary"
+                >
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
       );
     } else if (pinnedTopic) {
       document.title = this.props.pinnedTopic.title + " | jamgph";
       return (
-        <PinnedPost
-          title={pinnedTopic.title}
-          avatar={pinnedTopic.avatar}
-          author={pinnedTopic.author}
-          message={pinnedTopic.message}
-        />
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="card mb-4">
+                <h5 className="card-titles text-dark m-3">
+                  {pinnedTopic.title}
+                  <hr />
+                </h5>
+                <div className="card-body">
+                  <div className="container">
+                    <PinnedPost
+                      title={pinnedTopic.title}
+                      avatar={pinnedTopic.avatar}
+                      author={pinnedTopic.author}
+                      message={pinnedTopic.message}
+                    />
+                  </div>
+                </div>
+              </div>
+              {replyList &&
+                replyList.map(r => {
+                  return r.id === this.state.forumid ? (
+                    r.replies.map(res => {
+                      return (
+                        <div className="card mb-4" key={res.id}>
+                          <div className="card-body">
+                            <div className="container">
+                              <div>
+                                <PinnedReplies
+                                  avatar={res.avatar}
+                                  author={res.name}
+                                  message={res.reply}
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <div className="card mb-4" key={r.id}>
+                      <div className="card-body">
+                        <div className="container">
+                          <div>
+                            <Replies
+                              avatar={r.avatar}
+                              author={r.name}
+                              message={r.reply}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              Submit Reply
+              <form onSubmit={this.replyOnSubmit}>
+                <textarea
+                  value={this.state.reply}
+                  onChange={this.replyOnChange}
+                  className="form-control col-md-6 mb-3"
+                  rows="5"
+                />
+                <button
+                  disabled={this.state.disabled}
+                  type="submit"
+                  className="btn btn-primary"
+                >
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
       );
     } else {
       return null;
@@ -44,14 +217,18 @@ const mapStateToProps = (state, ownProps) => {
   const topic = topics ? topics[id] : null;
   const pinnedTopic = pinnedTopics ? pinnedTopics[id] : null;
   return {
+    forumid: ownProps.match.params.id,
     topic: topic,
     pinnedTopic: pinnedTopic,
-    auth: state.firebase.auth
+    replyList: state.firestore.ordered.replies,
+    auth: state.firebase.auth,
+    profile: state.firebase.profile
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
-    forumNav: () => dispatch(forumNav())
+    forumNav: () => dispatch(forumNav()),
+    reply: data => dispatch(reply(data))
   };
 };
 export default compose(
@@ -59,7 +236,7 @@ export default compose(
     mapStateToProps,
     mapDispatchToProps
   ),
-  firestoreConnect([
+  firestoreConnect(props => [
     {
       collection: "Forum",
       orderBy: ["date", "desc"]
@@ -67,6 +244,15 @@ export default compose(
     {
       collection: "PinnedForum",
       orderBy: ["date", "desc"]
+    },
+    {
+      collection: "replies",
+      doc: props.match.params.id,
+      subcollections: [
+        {
+          collection: "replies"
+        }
+      ]
     }
   ])
 )(ForumContent);

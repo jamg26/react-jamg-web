@@ -7,7 +7,9 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 import { forumNav } from "../../store/actions/navActions";
 import { Redirect } from "react-router-dom";
+import PinnedTopics from "./topicList";
 class Forum extends Component {
+  state = {};
   componentDidMount() {
     document.title = "Mini-Forum | jamgph";
     this.props.forumNav();
@@ -35,25 +37,7 @@ class Forum extends Component {
               </h5>
               <div className="card-body">
                 <ul className="list-unstyled">
-                  {pinned &&
-                    pinned.map(p => {
-                      return (
-                        <li key={p.id}>
-                          <Link to={"/topic/" + p.id}>
-                            <ul className="list-unstyled shadow-sm p-2 mb-3 bg-white rounded">
-                              <i className="fas fa-thumbtack" />{" "}
-                              <b>{p.title}</b>
-                              <small>
-                                <li>
-                                  Posted by: {p.author}{" "}
-                                  {moment(p.date.toDate()).calendar()}
-                                </li>
-                              </small>
-                            </ul>
-                          </Link>
-                        </li>
-                      );
-                    })}
+                  <PinnedTopics topics={pinned} />
                   {forum &&
                     forum.map((f, index) => {
                       return (
@@ -99,7 +83,7 @@ export default compose(
     mapStateToProps,
     mapDispatchToProps
   ),
-  firestoreConnect([
+  firestoreConnect(props => [
     {
       collection: "Forum",
       orderBy: ["date", "desc"]
