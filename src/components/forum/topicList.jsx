@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import moment from "moment";
 export default function PinnedTopics({ topics }) {
   return (
     <div>
@@ -12,8 +13,7 @@ export default function PinnedTopics({ topics }) {
                   <i className="fas fa-thumbtack" /> <b>{p.title}</b>
                   <small>
                     <li>
-                      Posted by: {p.author}{" "}
-                      {/* {moment(p.date.toDate()).calendar()} */}
+                      Posted by: {p.author} {moment(p.date.toDate()).calendar()}
                     </li>
                   </small>
                 </ul>

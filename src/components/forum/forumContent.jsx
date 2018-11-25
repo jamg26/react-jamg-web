@@ -6,6 +6,7 @@ import { Redirect } from "react-router-dom";
 import { forumNav } from "../../store/actions/navActions";
 import { NormalPost, PinnedPost, Replies } from "./forumContentHandler";
 import { reply } from "../../store/actions/forumActions";
+import moment from "moment";
 class ForumContent extends Component {
   state = {
     reply: "",
@@ -63,6 +64,9 @@ class ForumContent extends Component {
                       author={topic.author}
                       message={topic.message}
                     />
+                    <small className="float-right text-muted">
+                      Posted: {moment(topic.date.toDate()).calendar()}
+                    </small>
                   </div>
                 </div>
               </div>
@@ -79,6 +83,10 @@ class ForumContent extends Component {
                                   avatar={res.avatar}
                                   author={res.name}
                                   message={res.reply}
+                                  date={
+                                    res.date &&
+                                    moment(res.date.toDate()).calendar()
+                                  }
                                 />
                               </div>
                             );
@@ -89,6 +97,9 @@ class ForumContent extends Component {
                               avatar={r.avatar}
                               author={r.name}
                               message={r.reply}
+                              date={
+                                r.date && moment(r.date.toDate()).calendar()
+                              }
                             />
                           </div>
                         );
@@ -135,6 +146,9 @@ class ForumContent extends Component {
                       author={pinnedTopic.author}
                       message={pinnedTopic.message}
                     />
+                    <small className="float-right text-muted">
+                      Posted: {moment(pinnedTopic.date.toDate()).calendar()}
+                    </small>
                   </div>
                 </div>
               </div>
@@ -151,6 +165,10 @@ class ForumContent extends Component {
                                   avatar={res.avatar}
                                   author={res.name}
                                   message={res.reply}
+                                  date={
+                                    res.date &&
+                                    moment(res.date.toDate()).calendar()
+                                  }
                                 />
                               </div>
                             );
@@ -161,6 +179,9 @@ class ForumContent extends Component {
                               avatar={r.avatar}
                               author={r.name}
                               message={r.reply}
+                              date={
+                                r.date && moment(r.date.toDate()).calendar()
+                              }
                             />
                           </div>
                         );
@@ -233,7 +254,8 @@ export default compose(
       doc: props.match.params.id,
       subcollections: [
         {
-          collection: "replies"
+          collection: "replies",
+          orderBy: ["date", "asc"]
         }
       ]
     }

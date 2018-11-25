@@ -1,7 +1,7 @@
 import React from "react";
 import ReactHtmlParser from "react-html-parser";
 import Linkify from "react-linkify";
-
+import moment from "moment";
 export const NormalPost = props => {
   return (
     <div className="row">
@@ -84,6 +84,8 @@ export const Replies = props => {
           </div>
         </div>
       </div>
+      <small className="float-right text-muted">{props.date}</small>
+      <br />
       <hr />
     </div>
   );
