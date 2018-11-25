@@ -1,7 +1,6 @@
 import React from "react";
 import ReactHtmlParser from "react-html-parser";
 import Linkify from "react-linkify";
-import moment from "moment";
 export const NormalPost = props => {
   return (
     <div className="row">
