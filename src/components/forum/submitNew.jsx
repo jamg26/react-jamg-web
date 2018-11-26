@@ -3,17 +3,21 @@ import { connect } from "react-redux";
 import { newTopic } from "../../store/actions/forumActions";
 import { Link } from "react-router-dom";
 class SubmitNew extends Component {
-  componentDidMount() {
-    document.title = "Creating New Topic";
-  }
   state = {
     title: "",
     message: "",
     author: null,
     disabled: true,
     done: false,
-    photoURL: null
+    photoURL: null,
+    uid: null
   };
+  componentDidMount() {
+    document.title = "Creating New Topic";
+    this.setState({
+      uid: this.props.auth.uid
+    });
+  }
   onChange = e => {
     this.setState({
       [e.target.id]: e.target.value,

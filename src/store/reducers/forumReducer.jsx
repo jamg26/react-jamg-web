@@ -1,3 +1,4 @@
+import { ToastStore } from "react-toasts";
 const initState = {
   newtopic: ""
 };
@@ -14,6 +15,12 @@ const forumReducer = (state = initState, action) => {
         ...state,
         newtopic: action.payload
       };
+    case "TOPIC_DELETED":
+      ToastStore.success("Deleted!");
+      return state;
+    case "TOPIC_DELETE_ERROR":
+      ToastStore.error(action.payload);
+      return state;
     default:
       return state;
   }

@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { forumNav } from "../../store/actions/navActions";
 import { NormalPost, PinnedPost, Replies } from "./forumContentHandler";
-import { reply } from "../../store/actions/forumActions";
+import { reply, deleteTopic } from "../../store/actions/forumActions";
 import moment from "moment";
 class ForumContent extends Component {
   state = {
@@ -25,6 +25,9 @@ class ForumContent extends Component {
   componentDidMount() {
     this.props.forumNav();
   }
+  deleteTopic = e => {
+    this.props.deleteTopic(this.state);
+  };
   replyOnChange = e => {
     this.setState({
       reply: e.target.value,
@@ -54,6 +57,17 @@ class ForumContent extends Component {
               <div className="card mb-4">
                 <h5 className="card-titles text-dark m-3">
                   {topic.title}
+                  {topic.owner === auth.uid ? (
+                    <small>
+                      <Link
+                        to="/forum"
+                        onClick={this.deleteTopic}
+                        className="float-right text-danger"
+                      >
+                        Delete
+                      </Link>
+                    </small>
+                  ) : null}
                   <hr />
                 </h5>
                 <div className="card-body">
@@ -232,7 +246,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     forumNav: () => dispatch(forumNav()),
-    reply: data => dispatch(reply(data))
+    reply: data => dispatch(reply(data)),
+    deleteTopic: data => dispatch(deleteTopic(data))
   };
 };
 export default compose(

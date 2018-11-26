@@ -9,7 +9,8 @@ export const newTopic = data => {
         title: data.title,
         author: data.author,
         avatar: data.photoURL,
-        date: new Date()
+        date: new Date(),
+        owner: data.uid
       })
       .then(() => {
         dispatch({ type: "NEW_TOPIC_ADDED" });
@@ -38,6 +39,22 @@ export const reply = data => {
       })
       .catch(e => {
         ToastStore.error(e.message);
+      });
+  };
+};
+
+export const deleteTopic = data => {
+  return (dispatch, getState, { getFirestore }) => {
+    const firestore = getFirestore();
+    firestore
+      .collection("Forum")
+      .doc(data.forumid)
+      .delete()
+      .then(() => {
+        dispatch({ type: "TOPIC_DELETED" });
+      })
+      .catch(e => {
+        dispatch({ type: "TOPIC_DELETE_ERROR", payload: e.message });
       });
   };
 };

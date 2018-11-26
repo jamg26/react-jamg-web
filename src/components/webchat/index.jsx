@@ -23,13 +23,6 @@ class WebChat extends Component {
   };
 
   componentDidUpdate() {
-    if (this.state.loadLimit === null) {
-      setTimeout(e => {
-        this.setState({
-          loadLimit: this.props.countWebchat.chatSize
-        });
-      }, 500);
-    }
     var el = this.refs.wrap;
     if (this.state.loadLimit === this.props.countWebchat.chatSize) {
       el.scrollTop = el.scrollHeight;
@@ -41,11 +34,15 @@ class WebChat extends Component {
   }
   openChatbox = () => {
     this.setState({
-      chatbox: true
+      chatbox: true,
+      loadLimit: this.props.countWebchat.chatSize
     });
   };
   componentDidMount() {
     this.props.getMessageSize();
+    this.setState({
+      loadLimit: this.props.countWebchat.chatSize
+    });
   }
 
   scrollHandler = e => {
