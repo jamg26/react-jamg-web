@@ -1,6 +1,6 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
-const moment = require("moment");
+const moment = require("moment-timezone");
 const settings = { timestampsInSnapshots: true };
 admin.initializeApp(functions.config().firebase);
 admin.firestore().settings(settings);
@@ -39,8 +39,18 @@ exports.jamgBot = functions.firestore
     //chatbot
     if (data.user !== "CHATBOT") {
       //chatbot commands
-      if (msg === "!time") botReply(moment().format("LT"));
-      if (msg === "!date") botReply(moment().format("LL"));
+      if (msg === "!time")
+        botReply(
+          `${moment()
+            .tz("Asia/Manila")
+            .format("LT")}`
+        );
+      if (msg === "!date")
+        botReply(
+          `${moment()
+            .tz("Asia/Manila")
+            .format("LL")}`
+        );
 
       //chatbot listening
       if (msg === "hi" || msg === "hi!" || msg.includes("hello"))
