@@ -1,13 +1,26 @@
 import { ToastStore } from "react-toasts";
 export const login = credentials => {
-  return (dispatch, getState, { getFirebase }) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firebase = getFirebase();
+    const firestore = getFirestore();
     firebase
       .auth()
       .signInWithEmailAndPassword(credentials.email, credentials.password)
-      .then(() => {
+      .then(r => {
         dispatch({ type: "LOGIN_SUCCESS" });
         ToastStore.success("Login Success");
+        return firestore
+          .collection("users")
+          .doc(r.user.uid)
+          .get()
+          .then(user => {
+            const data = user.data();
+            return firestore.collection("webchat").add({
+              user: data.firstName,
+              message: "has logged in.",
+              date: new Date()
+            });
+          });
       })
       .catch(err => {
         dispatch({ type: "LOGIN_ERROR", err });
