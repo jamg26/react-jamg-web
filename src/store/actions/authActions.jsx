@@ -57,6 +57,13 @@ export const register = newUser => {
             lastName: newUser.lastName,
             initials: newUser.firstName[0] + newUser.lastName[0],
             time: new Date()
+          })
+          .then(() => {
+            return firestore.collection("webchat").add({
+              user: newUser.firstName,
+              message: "has registered.",
+              date: new Date()
+            });
           });
       })
       .then(() => {
