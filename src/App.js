@@ -16,6 +16,7 @@ import Navbar from "./components/navbar/navbar";
 import Forum from "./components/forum";
 import SubmitNew from "./components/forum/submitNew";
 import forumContent from "./components/forum/forumContent";
+import ViewProfile from "./components/profile/profile";
 //-----------------------------------------------------------------------------------------------------
 class App extends Component {
   state = {};
@@ -47,6 +48,7 @@ class App extends Component {
                 <Route path="/forum" component={Forum} />
                 <Route path="/topic/:id" component={forumContent} />
                 <Route path="/newtopic/:forumid(1)" component={SubmitNew} />
+                <Route path="/:username" component={ViewProfile} />
                 <Route component={this.pageNotFound} />
               </Switch>
             </div>

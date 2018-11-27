@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { removeDp, dp, newGender } from "../../store/actions/profileActions";
+import {
+  removeDp,
+  dp,
+  newGender,
+  updateUsername
+} from "../../store/actions/profileActions";
 import { profile } from "../../store/actions/navActions";
 import { newAge } from "../../store/actions/profileActions";
 import { Age } from "./age";
@@ -11,13 +16,16 @@ import { Gender } from "./gender";
 import { Loading } from "../../functions/loaders";
 import { Redirect } from "react-router-dom";
 import { verifyEmail } from "../../store/actions/authActions";
+import { Username } from "./username";
 class Profile extends Component {
   state = {
     age: "",
     ageInput: true,
     genderInput: true,
     dp: [],
-    dpLoaded: false
+    dpLoaded: false,
+    username: "",
+    usernameInput: true
   };
   componentDidMount() {
     document.title = "Profile | jamgph";
@@ -47,7 +55,24 @@ class Profile extends Component {
   openFile = e => {
     this.refs.fileUploader.click();
   };
-
+  //username
+  addUsernameInput = () => {
+    this.setState({
+      usernameInput: false
+    });
+  };
+  username = e => {
+    this.setState({
+      username: e.target.value
+    });
+  };
+  submitUsername = e => {
+    e.preventDefault();
+    this.setState({
+      usernameInput: true
+    });
+    this.props.username(this.state.username);
+  };
   //age
   addAgeInput = () => {
     this.setState({ ageInput: false });
@@ -99,7 +124,7 @@ class Profile extends Component {
   render() {
     if (!this.props.firebase.auth.uid) return <Redirect to="/" />;
     const { firebase } = this.props;
-    const { ageInput } = this.state;
+    const { ageInput, usernameInput } = this.state;
     return (
       <div className="container">
         <div className="row">
@@ -158,6 +183,15 @@ class Profile extends Component {
                               </Link>
                             )}
                             )
+                          </li>
+                          <li>
+                            <Username
+                              username={firebase.profile.username}
+                              usernameChange={this.username}
+                              usernameInput={usernameInput}
+                              addUsernameInput={this.addUsernameInput}
+                              submitUsername={this.submitUsername}
+                            />
                           </li>
                           <li>
                             <Age
@@ -220,7 +254,8 @@ const mapDispatchToProps = dispatch => {
     profile: () => dispatch(profile()),
     age: data => dispatch(newAge(data)),
     gender: data => dispatch(newGender(data)),
-    resend: () => dispatch(verifyEmail())
+    resend: () => dispatch(verifyEmail()),
+    username: username => dispatch(updateUsername(username))
   };
 };
 export default connect(

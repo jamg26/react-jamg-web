@@ -75,7 +75,7 @@ class Nav extends Component {
                     className={profileClass}
                     onClick={this.props.profile}
                   >
-                    Profile
+                    Edit Profile
                   </Link>
                 </li>
                 <li className="nav-item">
