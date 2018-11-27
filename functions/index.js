@@ -1,6 +1,9 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
+const moment = require("moment");
+const settings = { timestampsInSnapshots: true };
 admin.initializeApp(functions.config().firebase);
+admin.firestore().settings(settings);
 
 const botReply = data => {
   return admin
@@ -27,25 +30,37 @@ exports.jamgBot = functions.firestore
     const data = doc.data();
     const msg = data.message.toLowerCase();
     //replies
-    const greetings = ["hi", "hello", "uy", "musta?"];
+    const greetings = ["hi ", "hello ", "uy ", "musta "];
     const jamg = [
       "ano po need nyo kay jam?",
       "wla po sya dto",
       "sya po gumawa sakin"
     ];
-    //chatbot starting to listen
+    //chatbot
     if (data.user !== "CHATBOT") {
+      //chatbot commands
+      if (msg === "!time") botReply(moment().format("LT"));
+      if (msg === "!date") botReply(moment().format("LL"));
+
+      //chatbot listening
       if (msg === "hi" || msg === "hi!" || msg.includes("hello"))
-        botReply(greetings[random(greetings.length)]);
+        botReply(greetings[random(greetings.length)] + " " + data.user);
+
       if (msg.includes("jam")) botReply(jamg[random(jamg.length)]);
+
       if (msg.includes("jamuel")) botReply("shh");
-      if (msg.includes("musta")) botReply("ayos naman ikaw ? kamusta...");
-      if (msg.includes("oras")) botReply("oras na para matulog ako.");
+
+      if (msg.includes("musta"))
+        botReply("ayos naman ikaw " + data.user + " kamusta?");
+
       if (msg.includes("chix")) botReply("uy may chix ? asan <3");
+
       if (msg.includes("spotify") || msg.includes("crunchyroll"))
         botReply("wait lang po kayo mag release si jam");
+
       if (msg.includes("netflix"))
         botReply("hindi pa po kami ng rrelease ng netflix paps");
+
       if (
         msg.includes("gago") ||
         msg.includes("pota") ||
@@ -54,9 +69,12 @@ exports.jamgBot = functions.firestore
         msg.includes("tangina")
       )
         botReply("uy bawal magmura");
+
       if (msg.includes(" bot ") || msg.includes("chatbot"))
         botReply("bakit po");
+
       if (msg.includes("pogi")) botReply("ha? pogi ? si jam un");
+
       if (msg.includes("pangit") || msg.includes("panget"))
         botReply("sinong panget?");
     }
