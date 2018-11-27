@@ -26,11 +26,13 @@ class WebChat extends Component {
     var el = this.refs.wrap;
     if (this.state.loadLimit === this.props.countWebchat.chatSize) {
       el.scrollTop = el.scrollHeight;
-    } else if (this.state.loadLimit <= 0) {
-      el.scrollTop = 0;
-    } else if (this.state.loadLimit < this.props.countWebchat.chatSize) {
-      el.scrollTop = el.scrollHeight / 10;
     }
+    // else if (this.state.loadLimit <= 0) {
+    //   el.scrollTop = 0;
+    // }
+    // else if (this.state.loadLimit < this.props.countWebchat.chatSize) {
+    //   el.scrollTop = el.scrollHeight / 10;
+    // }
   }
   openChatbox = () => {
     this.setState({
