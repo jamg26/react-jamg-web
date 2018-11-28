@@ -9,12 +9,8 @@ class WebChat extends Component {
   state = {
     message: "",
     firstName: null,
-    avatar: this.props.fb.auth.photoURL,
-    loadLimit: null,
-    LoadingChatHidden: true,
-    chatbox: false
+    avatar: this.props.fb.auth.photoURL
   };
-
   onMessageChange = e => {
     this.setState({
       message: e.target.value,
@@ -23,42 +19,20 @@ class WebChat extends Component {
   };
 
   componentDidUpdate() {
-    if (this.state.loadLimit === null) {
-      setTimeout(e => {
-        this.setState({
-          loadLimit: this.props.countWebchat.chatSize
-        });
-      }, 500);
-    }
     var el = this.refs.wrap;
-    if (this.state.loadLimit === this.props.countWebchat.chatSize) {
-      el.scrollTop = el.scrollHeight;
-    } else if (this.state.loadLimit <= 0) {
-      el.scrollTop = 0;
-    } else if (this.state.loadLimit < this.props.countWebchat.chatSize) {
-      el.scrollTop = el.scrollHeight / 10;
-    }
+    el.scrollTop = el.scrollHeight;
   }
+
   openChatbox = () => {
     this.setState({
       chatbox: true,
       loadLimit: this.props.countWebchat.chatSize
     });
   };
+
   componentDidMount() {
     this.props.getMessageSize();
   }
-
-  scrollHandler = e => {
-    var el = this.refs.wrap;
-    if (el.scrollTop === 0) {
-      setTimeout(e => {
-        this.setState({
-          loadLimit: this.state.loadLimit - 10
-        });
-      }, 1000);
-    }
-  };
 
   onSubmitMessage = e => {
     e.preventDefault();
@@ -67,56 +41,26 @@ class WebChat extends Component {
     });
     this.props.newMessage(this.state);
   };
+
   render() {
     const { webchat, pinned } = this.props;
-    if (!this.state.chatbox) {
-      return (
-        <div className="card">
-          <h5 className="card-titles text-dark m-3">Chatbox</h5>
-          <div
-            className="card-body chat border-top"
-            ref="wrap"
-            onScroll={this.scrollHandler}
-          >
-            <button
-              type="button"
-              onClick={this.openChatbox}
-              className="btn btn-primary"
-            >
-              Open Chatbox
-            </button>
-          </div>
-        </div>
-      );
-    }
     return (
       <div className="card">
         <h5 className="card-titles text-dark m-3">Chatbox (BETA)</h5>
-        <div
-          className="card-body chat border-top"
-          ref="wrap"
-          onScroll={this.scrollHandler}
-        >
+        <div className="card-body chat border-top" ref="wrap">
           <ul className="list-unstyled">
-            {!webchat ? null : this.state.loadLimit <= 0 ? null : (
-              <li className="text-center mb-3">Loading . . .</li>
-            )}
             {webchat &&
               webchat.map((res, index) => {
-                if (index >= this.state.loadLimit - 10) {
-                  return (
-                    <li key={res.id}>
-                      <Messages
-                        avatar={res.avatar}
-                        user={res.user}
-                        message={res.message}
-                        date={moment(res.date.toDate()).calendar()}
-                      />
-                    </li>
-                  );
-                } else {
-                  return null;
-                }
+                return (
+                  <li key={res.id}>
+                    <Messages
+                      avatar={res.avatar}
+                      user={res.user}
+                      message={res.message}
+                      date={moment(res.date.toDate()).calendar()}
+                    />
+                  </li>
+                );
               })}
           </ul>
           <ul className="list-unstyled">
