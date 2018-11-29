@@ -11,6 +11,7 @@ class WebChat extends Component {
     firstName: null,
     avatar: this.props.fb.auth.photoURL
   };
+
   onMessageChange = e => {
     this.setState({
       message: e.target.value,
