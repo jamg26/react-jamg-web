@@ -2,7 +2,7 @@ import { ToastStore } from "react-toasts";
 export const login = credentials => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firebase = getFirebase();
-    const firestore = getFirestore();
+    //const firestore = getFirestore();
     firebase
       .auth()
       .signInWithEmailAndPassword(credentials.email, credentials.password)
