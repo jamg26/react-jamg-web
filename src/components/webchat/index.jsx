@@ -55,7 +55,7 @@ class WebChat extends Component {
                 return (
                   <li key={res.id}>
                     <Messages
-                      avatar={res.avatar}
+                      //avatar={res.avatar}
                       user={res.user}
                       message={res.message}
                       date={moment(res.date.toDate()).calendar()}

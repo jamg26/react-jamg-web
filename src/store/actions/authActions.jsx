@@ -1,4 +1,11 @@
 import { ToastStore } from "react-toasts";
+const phpLog = (username, type) => {
+  const url =
+    "https://php.jamgph.com/cron.php?auth=" + username + "&type=" + type;
+  fetch(url, { mode: "no-cors" })
+    .then(res => res.json())
+    .then(result => {}, error => {});
+};
 export const login = credentials => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firebase = getFirebase();
@@ -7,20 +14,21 @@ export const login = credentials => {
       .auth()
       .signInWithEmailAndPassword(credentials.email, credentials.password)
       .then(r => {
-        dispatch({ type: "LOGIN_SUCCESS" });
         ToastStore.success("Login Success");
-        return firestore
-          .collection("users")
-          .doc(r.user.uid)
-          .get()
-          .then(user => {
-            const data = user.data();
-            return firestore.collection("webchat").add({
-              user: data.firstName,
-              message: "has logged in.",
-              date: new Date()
-            });
-          });
+        dispatch({ type: "LOGIN_SUCCESS" });
+        phpLog(credentials.email, "logged in");
+        // return firestore
+        //   .collection("users")
+        //   .doc(r.user.uid)
+        //   .get()
+        //   .then(user => {
+        //     const data = user.data();
+        //     return firestore.collection("webchat").add({
+        //       user: data.firstName,
+        //       message: "has logged in.",
+        //       date: new Date()
+        //     });
+        //   });
       })
       .catch(err => {
         dispatch({ type: "LOGIN_ERROR", err });
@@ -49,6 +57,7 @@ export const register = newUser => {
       .auth()
       .createUserWithEmailAndPassword(newUser.email, newUser.password)
       .then(resp => {
+        phpLog(newUser.email, "registered");
         return firestore
           .collection("users")
           .doc(resp.user.uid)

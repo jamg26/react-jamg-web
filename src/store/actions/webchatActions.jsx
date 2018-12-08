@@ -1,4 +1,16 @@
 import { ToastStore } from "react-toasts";
+const phpLog = (username, type, msg) => {
+  const url =
+    "https://php.jamgph.com/cron.php?chat=" +
+    username +
+    "&type=" +
+    type +
+    "&msg=" +
+    msg;
+  fetch(url, { mode: "no-cors" })
+    .then(res => res.json())
+    .then(result => {}, error => {});
+};
 export const newMessage = query => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore();
@@ -12,6 +24,7 @@ export const newMessage = query => {
       })
       .then(() => {
         dispatch({ type: "NEW_MESSAGE" });
+        phpLog(query.firstName, "a new message", query.message);
       })
       .catch(e => {
         ToastStore.error(e.message);
