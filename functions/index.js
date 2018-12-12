@@ -56,17 +56,17 @@ exports.jamgBot = functions.firestore
       if (msg === "hi" || msg === "hi!" || msg.includes("hello"))
         botReply(greetings[random(greetings.length)] + " " + data.user);
 
-      if (msg.includes("jam")) botReply(jamg[random(jamg.length)]);
+      //if (msg.includes("jam")) botReply(jamg[random(jamg.length)]);
 
-      if (msg.includes("jamuel")) botReply("shh");
+      //if (msg.includes("jamuel")) botReply("shh");
 
       if (msg.includes("musta"))
         botReply("ayos naman ikaw " + data.user + " kamusta?");
 
       if (msg.includes("chix")) botReply("uy may chix ? asan <3");
 
-      if (msg.includes("spotify") || msg.includes("crunchyroll"))
-        botReply("wait lang po kayo mag release si jam");
+      // if (msg.includes("spotify") || msg.includes("crunchyroll"))
+      //   botReply("wait lang po kayo mag release si jam");
 
       if (msg.includes("netflix"))
         botReply("hindi pa po kami ng rrelease ng netflix paps");
@@ -83,7 +83,7 @@ exports.jamgBot = functions.firestore
       if (msg.includes(" bot ") || msg.includes("chatbot"))
         botReply("bakit po");
 
-      if (msg.includes("pogi")) botReply("ha? pogi ? si jam un");
+      //if (msg.includes("pogi")) botReply("ha? pogi ? si jam un");
 
       if (msg.includes("pangit") || msg.includes("panget"))
         botReply("sinong panget?");
