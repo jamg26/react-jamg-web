@@ -9,7 +9,7 @@ import { Redirect, Link } from "react-router-dom";
 import { home } from "../../store/actions/layoutActions";
 import Modal from "react-modal";
 import { GroupTextHandler } from "../../functions/groupTextHandler";
-import Quotes from "../api/quotes";
+// import Quotes from "../api/quotes";
 class Login extends Component {
   componentDidMount() {
     document.title = "Login | JamgPH";
@@ -167,7 +167,7 @@ class Login extends Component {
             <div className="card">
               <div className="card-body dash-note">
                 {/* Login Content starts here */}
-                <Quotes />
+                {/* <Quotes /> */}
               </div>
             </div>
           </div>
