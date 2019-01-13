@@ -48,7 +48,7 @@ class App extends Component {
                 <Route path="/forum" component={Forum} />
                 <Route path="/topic/:id" component={forumContent} />
                 <Route path="/newtopic/:forumid(1)" component={SubmitNew} />
-                <Route path="/:username" component={ViewProfile} />
+                <Route path="/u/:username" component={ViewProfile} />
                 <Route component={this.pageNotFound} />
               </Switch>
             </div>
