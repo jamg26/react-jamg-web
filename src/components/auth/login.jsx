@@ -164,12 +164,12 @@ class Login extends Component {
             </div>
           </div>
           <div className="col-md-6 d-none d-md-block">
-            <div className="card">
+            {/* <div className="card">
               <div className="card-body dash-note">
-                {/* Login Content starts here */}
-                {/* <Quotes /> */}
+                Login Content starts here
+                <Quotes />
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
