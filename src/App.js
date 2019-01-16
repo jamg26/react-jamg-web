@@ -17,6 +17,7 @@ import Forum from "./components/forum";
 import SubmitNew from "./components/forum/submitNew";
 import forumContent from "./components/forum/forumContent";
 import ViewProfile from "./components/profile/profile";
+import DistributionTable from "./components/distributionTable";
 //-----------------------------------------------------------------------------------------------------
 class App extends Component {
   state = {};
@@ -49,6 +50,10 @@ class App extends Component {
                 <Route path="/topic/:id" component={forumContent} />
                 <Route path="/newtopic/:forumid(1)" component={SubmitNew} />
                 <Route path="/u/:username" component={ViewProfile} />
+                <Route
+                  path="/distribution-table"
+                  component={DistributionTable}
+                />
                 <Route component={this.pageNotFound} />
               </Switch>
             </div>
