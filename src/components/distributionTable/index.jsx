@@ -153,7 +153,7 @@ class DistributionTable extends Component {
             <h3>N = {this.state.N ? this.state.N : "?"}</h3>
             <h2>Mean:</h2>
             <h3>Summ. FX = {this.state.summFx}</h3>
-            <h3>mean = {this.state.summFx / 2}</h3>
+            <h3>mean = {this.state.summFx / this.state.N}</h3>
             <h2>Median:</h2>
             <h3>Median Location: {this.mLoc}</h3>
             <h3>Xlb = {mxlb}</h3>
