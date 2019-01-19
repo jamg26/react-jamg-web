@@ -223,11 +223,11 @@ class Profile extends Component {
                     <ul>
                       <li>Click image to add/change profile picture.</li>
                       <li>
-                        Dont refresh your browser when updating a picture to
+                        Don't refresh your browser when updating a picture to
                         avoid corrupted image.
                       </li>
                       <li>
-                        Only your current profile will be save in our database,
+                        Only your current profile will be saved in our database,
                         no matter how often you change it.
                       </li>
                     </ul>
