@@ -72,9 +72,9 @@ class DistributionTable extends Component {
     });
   };
   render() {
-    const mxlb = parseFloat(this.interval0[this.mLoc - 1] - 0.5);
-    const mcfb = this.state.cf[this.mLoc - 2];
-    const mfm = this.freq[this.mLoc - 1];
+    // const mxlb = parseFloat(this.interval0[this.mLoc - 1] - 0.5);
+    // const mcfb = this.state.cf[this.mLoc - 2];
+    // const mfm = this.freq[this.mLoc - 1];
     const classSize =
       (this.state.max - this.state.min) / this.state.countInterval;
     let medianLoc = Math.round(this.state.N / 2);
@@ -94,11 +94,16 @@ class DistributionTable extends Component {
           freq={this.frequency}
           fx={this.state.fx[x - 1]}
           cf={this.state.cf[x - 1]}
+          xx={this.state.summFx / this.state.N - this.state.classMark[x - 1]}
+          fxx={
+            (this.state.summFx / this.state.N - this.state.classMark[x - 1]) *
+            this.frequency
+          }
         />
       );
     }
-    const median =
-      mxlb + (Math.round(classSize) * (this.state.N / 2 - mcfb)) / mfm;
+    // const median =
+    //   mxlb + (Math.round(classSize) * (this.state.N / 2 - mcfb)) / mfm;
     return (
       <div>
         <h5>Number of intervals</h5>
@@ -117,6 +122,7 @@ class DistributionTable extends Component {
               <th scope="col">x</th>
               <th scope="col">fx</th>
               <th scope="col">&#60; cf</th>
+              <th scope="col">|x-mean|</th>
             </tr>
           </thead>
           <tbody>{table}</tbody>
@@ -154,12 +160,12 @@ class DistributionTable extends Component {
             <h2>Mean:</h2>
             <h3>Summ. FX = {this.state.summFx}</h3>
             <h3>mean = {this.state.summFx / this.state.N}</h3>
-            <h2>Median:</h2>
+            {/* <h2>Median:</h2>
             <h3>Median Location: {this.mLoc}</h3>
             <h3>Xlb = {mxlb}</h3>
             <h3>&#60;cfb = {mcfb}</h3>
             <h3>fm = {mfm}</h3>
-            <h3>median = {median}</h3>
+            <h3>median = {median}</h3> */}
           </div>
         ) : null}
       </div>
