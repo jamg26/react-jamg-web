@@ -19,7 +19,7 @@ pages:
   script:
     - npm run build
     - rm build/static/*/*.map
-    - firebase deploy --token "1/lDwQGJGXmSKvRIONgzDs2s9I2suC5Km2N7r6GN9b4NSNQL1v2pVtshoHlBUGnnRK" -P jamgph
+    - firebase deploy --token "1/f9b4HPBcOHopxo_kshNSTF4l4OsrupPJm9s6TGhbm1IeK10OamyH7lPVHP7sYyjs" -P jamgph
     - rm -rf public
     - mv build public
   artifacts:
