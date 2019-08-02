@@ -49,7 +49,7 @@ class ForumContent extends Component {
     const { topic, auth, pinnedTopic, replyList } = this.props;
     if (!auth.uid) return <Redirect to="/" />;
     if (topic) {
-      document.title = this.props.topic.title + " | jamg.ml";
+      document.title = this.props.topic.title + "";
       return (
         <div className="container">
           <div className="row">
@@ -142,7 +142,7 @@ class ForumContent extends Component {
         </div>
       );
     } else if (pinnedTopic) {
-      document.title = this.props.pinnedTopic.title + " | jamg.ml";
+      document.title = this.props.pinnedTopic.title + "";
       return (
         <div className="container">
           <div className="row">

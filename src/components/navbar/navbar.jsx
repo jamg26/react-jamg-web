@@ -37,7 +37,7 @@ class Nav extends Component {
       <div>
         <nav className="navbar navbar-light bg-light">
           <div className="navbar-brand d-none d-sm-block abel-header text-info">
-            JAMG.ML
+            JAML.GA
           </div>
           <div className="navbar-brand  d-none d-block d-sm-none">
             <img

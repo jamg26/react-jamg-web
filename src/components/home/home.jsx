@@ -95,7 +95,7 @@ class Home extends Component {
   Content() {
     const { layout, auth, email } = this.props;
     if (!auth.emailVerified) {
-      document.title = "Home | jamg.ml";
+      document.title = "Home";
       return (
         <div className="col-md-6">
           <br className="d-block d-md-none" />
@@ -116,7 +116,7 @@ class Home extends Component {
         <div className="col-md-6">
           <br className="d-block d-md-none" />
           {layout.default ? (
-            ((document.title = "Home | jamg.ml"), this.defaultContent())
+            ((document.title = "Home"), this.defaultContent())
           ) : (
             <div className="card">
               <div className="card-body">
