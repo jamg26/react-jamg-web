@@ -28,7 +28,7 @@ class Profile extends Component {
     usernameInput: true
   };
   componentDidMount() {
-    document.title = "Profile | jamgph";
+    document.title = "Profile | jamg.ml";
     this.props.profile();
   }
   //dp

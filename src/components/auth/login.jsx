@@ -12,7 +12,7 @@ import { GroupTextHandler } from "../../functions/groupTextHandler";
 // import Quotes from "../api/quotes";
 class Login extends Component {
   componentDidMount() {
-    document.title = "Login | JamgPH";
+    document.title = "Login | jamg.ml";
   }
 
   state = {

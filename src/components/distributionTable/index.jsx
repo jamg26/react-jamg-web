@@ -3,7 +3,7 @@ import { Element } from "./element";
 
 class DistributionTable extends Component {
   componentDidMount() {
-    document.title = "Frequency Distribution Table | JamgPH";
+    document.title = "Frequency Distribution Table | jamg.ml";
   }
   state = {
     countInterval: 0,

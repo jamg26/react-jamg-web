@@ -8,19 +8,19 @@ export const AuthContent = props => {
   return (
     <div>
       {props.windows
-        ? ((document.title = "Windows | jamgph"), <WindowsLinks />)
+        ? ((document.title = "Windows | jamg.ml"), <WindowsLinks />)
         : props.android
-        ? ((document.title = "Android | jamgph"), <AndroidLinks />)
+        ? ((document.title = "Android | jamg.ml"), <AndroidLinks />)
         : props.os
-        ? ((document.title = "Operating System | jamgph"), <OsLinks />)
+        ? ((document.title = "Operating System | jamg.ml"), <OsLinks />)
         : props.movies
-        ? ((document.title = "Movies | jamgph"), <Movies />)
+        ? ((document.title = "Movies | jamg.ml"), <Movies />)
         : props.ip
-        ? ((document.title = "IP Locator | jamgph"), <IPLocator />)
+        ? ((document.title = "IP Locator | jamg.ml"), <IPLocator />)
         : props.yt
-        ? ((document.title = "Youtube to mp3 | jamgph"), <Youtube />)
+        ? ((document.title = "Youtube to mp3 | jamg.ml"), <Youtube />)
         : props.about
-        ? ((document.title = "About | jamgph"), <About />)
+        ? ((document.title = "About | jamg.ml"), <About />)
         : null}
     </div>
   );

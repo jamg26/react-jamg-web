@@ -11,7 +11,7 @@ import PinnedTopics from "./topicList";
 class Forum extends Component {
   state = {};
   componentDidMount() {
-    document.title = "Mini-Forum | jamgph";
+    document.title = "Mini-Forum | jamg.ml";
     this.props.forumNav();
   }
   render() {

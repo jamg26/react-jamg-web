@@ -156,7 +156,7 @@ class authActions extends Component {
     );
   }
   render() {
-    document.title = "Auth | JamgPH";
+    document.title = "Auth | jamg.ml";
     const values = queryString.parse(this.props.location.search);
     if (!values.oobCode) return <Redirect to="/" />;
     return (

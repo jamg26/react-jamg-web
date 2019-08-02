@@ -8,7 +8,7 @@ import Recaptcha from "react-recaptcha";
 import { ToastStore } from "react-toasts";
 class Register extends Component {
   componentDidMount() {
-    document.title = "Register | JamgPH";
+    document.title = "Register | jamg.ml";
     this.props.registerNav();
   }
   state = {
