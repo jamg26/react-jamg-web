@@ -258,7 +258,4 @@ const mapDispatchToProps = dispatch => {
     username: username => dispatch(updateUsername(username))
   };
 };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

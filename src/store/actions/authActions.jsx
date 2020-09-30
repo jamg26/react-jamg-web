@@ -4,7 +4,10 @@ const phpLog = (username, type) => {
     "https://php.jamgph.com/cron.php?auth=" + username + "&type=" + type;
   fetch(url, { mode: "no-cors" })
     .then(res => res.json())
-    .then(result => {}, error => {});
+    .then(
+      result => {},
+      error => {}
+    );
 };
 export const login = credentials => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
